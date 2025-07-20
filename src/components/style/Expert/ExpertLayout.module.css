@@ -1,0 +1,26 @@
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  max-width: 1920px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f7fdf9;
+}
+
+/* Sidebar inachukuliwa na component moja kwa moja - haina class hapa */
+
+.mainContent {
+  flex-grow: 1;
+  display: flex;
+  /* flex-direction: column; */
+  overflow: hidden;
+}
+
+/* Navbar imekuwa sticky kwenye component yake, hapa tunaitunza kama sehemu ya mainContent */
+.pageContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background-color: #f1fdf7;
+}

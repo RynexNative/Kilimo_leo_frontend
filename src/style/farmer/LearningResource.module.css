@@ -1,0 +1,145 @@
+.container {
+    background-color: #f9fbe7;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1);
+    margin-top: 5px;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Filters section */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+    justify-content: center;
+  }
+  
+  .searchInput,
+  .categorySelect {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #c5e1a5;
+    font-size: 1rem;
+    outline: none;
+    min-width: 220px;
+  }
+  
+  .searchInput:focus,
+  .categorySelect:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  }
+  
+  /* Lesson list */
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+  }
+  
+  .item {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-left: 6px solid #4caf50;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+  }
+  
+  .lessonTitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+  }
+  
+  .meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 4px;
+  }
+  
+  /* Modal overlay (background dim) */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  /* Modal container */
+  .modal {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    position: relative;
+  }
+  
+  /* Modal title */
+  .modalTitle {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  
+  /* Modal meta info */
+  .modalMeta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  /* Modal content */
+  .modalContent {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 24px;
+  }
+  
+  /* Close button */
+  .closeBtn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .closeBtn:hover {
+    background-color: #388e3c;
+  }
+  

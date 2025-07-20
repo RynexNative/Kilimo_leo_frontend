@@ -1,0 +1,45 @@
+.container {
+    padding: 24px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .header h2 {
+    font-size: 1.5rem;
+    color: #1b4332;
+  }
+  
+  .addButtons {
+    background-color: #2d6a4f;
+    color: rgb(241, 240, 240);
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 200px;
+  }
+  
+  .addButton:hover {
+    background-color: #1b4332;
+  }
+  
+  .alertList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  
+  .empty {
+    font-style: italic;
+    color: #777;
+    margin-top: 20px;
+    text-align: center;
+  }
+  

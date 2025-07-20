@@ -1,0 +1,57 @@
+.card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #ffffff;
+    border-left: 6px solid #4caf50;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 128, 0, 0.08);
+    margin-bottom: 16px;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .icon {
+    font-size: 2rem;
+  }
+  
+  .sun {
+    color: #fbc02d;
+  }
+  
+  .rain {
+    color: #2196f3;
+  }
+  
+  .wind {
+    color: #81c784;
+  }
+  
+  .storm {
+    color: #e53935;
+  }
+  
+  .default {
+    color: #607d8b;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .weather {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #2e7d32;
+  }
+  
+  .tip {
+    margin-top: 4px;
+    font-size: 1rem;
+    color: #424242;
+  }
+  

@@ -1,0 +1,45 @@
+/* src/style/Admin/QuickActionPanel.module.css */
+
+.panel {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+  }
+  
+  .panel h4 {
+    font-size: 16px;
+    color: #1b4332;
+    margin-bottom: 16px;
+  }
+  
+  .actionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  
+  .actionBtn {
+    background-color: #2d6a4f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actionBtn:hover {
+    background-color: #1b4332;
+  }
+  
+  .icon {
+    font-size: 20px;
+  }
+  

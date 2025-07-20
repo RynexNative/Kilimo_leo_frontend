@@ -1,0 +1,83 @@
+.sidebar {
+    width: 240px;
+    height: calc(100vh - 70px); 
+    background-color: #1b4332;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    /* position: sticky; */
+    /* top: 70px; Navbar height */
+    /* left: 0; */
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #95d5b2;
+  }
+  
+  .navList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .link:hover {
+    background-color: #2d6a4f;
+  }
+  
+  .active {
+    background-color: #40916c;
+    font-weight: bold;
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+  }
+  
+
+  /* admin css */
+  
+  .link,
+  .active {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .link:hover {
+    background-color: #2d6a4f;
+  }
+  
+  .active {
+    background-color: #40916c;
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+  }
+  

@@ -1,0 +1,31 @@
+.filterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 12px;
+    background-color: #f1f8e9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 128, 0, 0.08);
+  }
+  
+  .input {
+    flex: 1 1 180px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  .input:focus {
+    border-color: #4caf50;
+  }
+  
+  @media (max-width: 600px) {
+    .input {
+      flex: 1 1 100%;
+    }
+  }
+  

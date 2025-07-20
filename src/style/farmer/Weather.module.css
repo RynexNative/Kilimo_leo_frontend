@@ -1,0 +1,82 @@
+.container {
+    padding: 24px;
+    background-color: #f1f8e9;
+    min-height: calc(100% - 64px);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .currentWeather {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 128, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+    color: #33691e;
+  }
+  
+  .temp {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 8px 0;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .section h4 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    color: #388e3c;
+  }
+  
+  .hourlyList,
+  .weeklyList {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  
+  .hourCard,
+  .dayCard {
+    flex: 0 0 auto;
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 128, 0, 0.08);
+    min-width: 120px;
+    text-align: center;
+    color: #4e342e;
+    transition: transform 0.2s ease;
+  }
+  
+  .hourCard:hover,
+  .dayCard:hover {
+    transform: translateY(-4px);
+  }
+  
+  @media (max-width: 600px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .temp {
+      font-size: 1.6rem;
+    }
+  
+    .hourCard,
+    .dayCard {
+      min-width: 100px;
+      padding: 12px;
+    }
+  }
+  

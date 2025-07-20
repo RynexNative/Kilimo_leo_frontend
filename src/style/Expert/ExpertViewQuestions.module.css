@@ -1,0 +1,54 @@
+.container {
+    padding: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .header h2 {
+    font-size: 1.8rem;
+    color: #1b4332;
+    font-weight: 600;
+  }
+  
+  .filterBtns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .filterBtns button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filterBtns button:hover {
+    background-color: #e9ecef;
+  }
+  
+  .active {
+    background-color: #40916c !important;
+    color: white !important;
+    border-color: #40916c !important;
+  }
+  
+  .questionList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  

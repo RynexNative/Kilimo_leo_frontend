@@ -1,0 +1,42 @@
+.container {
+    padding: 24px;
+    background-color: #f1f8e9;
+    min-height: calc(100% - 64px);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    color: #2e7d32;
+    font-weight: 700;
+  }
+  
+  .addButton {
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .addButton:hover {
+    background-color: #1b5e20;
+    transform: scale(1.03);
+  }
+  
+  .cropsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
