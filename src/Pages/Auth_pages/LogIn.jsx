@@ -33,7 +33,7 @@ function LogIn() {
       const auth = response.isAuthenticated
       if (auth) {
         console.log('acha haraka.....')
-        navigate('/admin/', replace);
+        navigate('/admin/dashboard', replace);
       }
 
       console.log(response)

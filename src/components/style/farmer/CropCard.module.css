@@ -10,6 +10,7 @@
     flex-direction: column;
     gap: 12px;
     position: relative;
+    color: gray;
   }
   
   .card:hover {
@@ -40,6 +41,10 @@
     text-transform: capitalize;
   }
   
+  .status:hover{
+    cursor: pointer;
+    opacity: 0.5;
+  }
   .dates {
     margin-top: 10px;
     font-size: 0.9rem;

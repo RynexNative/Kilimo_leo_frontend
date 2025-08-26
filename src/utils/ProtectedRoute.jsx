@@ -13,6 +13,8 @@ export const redirectToDashboard = (role) => {
             return "/farmer/dashboard";
         case "Expert":
             return "/expert/dashboard";
+        case "ExtOfficer":
+            return "/extofficer/dashboard"
         default:
             return "/unauthorized";
     }

@@ -12,7 +12,7 @@
   }
   
   .modal {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.484);
     backdrop-filter: blur(12px);
     border-radius: 16px;
     padding: 30px;
@@ -20,6 +20,9 @@
     max-width: 500px;
     box-shadow: 0 8px 20px rgba(0, 128, 0, 0.2);
     animation: fadeIn 0.3s ease;
+    color: rgb(0, 0, 0);
+    overflow-y: scroll;
+    z-index: 999999;
   }
   
   .heading {
