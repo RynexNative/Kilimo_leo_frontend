@@ -34,6 +34,7 @@
     border-radius: 6px;
     font-size: 1rem;
     resize: none;
+    max-width: 480px;
   }
   
   .actions {
@@ -49,6 +50,7 @@
     padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+    color: black;
   }
   
   .submitBtn {

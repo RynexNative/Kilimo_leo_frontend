@@ -7,6 +7,7 @@ import WeatherAlert from '../Pages/ExtOfficer/WeatherAlert'
 import FieldVisits from '../Pages/ExtOfficer/FieldVisits'
 import ExtOfficerReport from '../Pages/ExtOfficer/ExtOfficerReport'
 import _404page from '../Pages/ErrorHandle/_404page'
+import Mafunzo from '../Pages/ExtOfficer/Mafunzo'
 
 function ExtOfficer_path() {
     return (
@@ -14,8 +15,13 @@ function ExtOfficer_path() {
             <Route path='' element={<ExpertLayout/>} >
                 <Route path='/dashboard' element={<ExtensionDashboard/>} />
                 <Route path='/farmer-list' element={<FarmerList/>} />
+
                 <Route path='/weather-alert' element={<WeatherAlert/>} />
+
                 <Route path='/field-visits' element={<FieldVisits/>} />
+
+                <Route path='/resource' element={<Mafunzo/>}/>
+
                 <Route path='/report' element={<ExtOfficerReport/>} />
 
                 {/* Crops Routes */}

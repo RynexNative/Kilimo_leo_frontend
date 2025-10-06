@@ -19,7 +19,7 @@ const ContentCard = ({ title, count, icon, desc, color, link }) => {
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.desc}>{desc}</p>
-        <p className={styles.count}>{count} Maudhui</p>
+        <p className={styles.count}>{count}</p>
       </div>
 
       <button className={styles.viewBtn} onClick={handleView}>

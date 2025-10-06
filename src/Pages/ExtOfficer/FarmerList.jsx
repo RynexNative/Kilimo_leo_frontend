@@ -1,49 +1,51 @@
 // src/pages/extension/FarmerList.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../style/ExtOfficer/FarmerList.module.css';
 import FarmerCard from '../../components/ExtOfficer/AlertCard';
+import axiosAuthApi from '../../utils/http';
+import Addfarmer from '../../components/ExtOfficer/Addfarmer';
 
-const dummyFarmers = [
-    { id: 1, name: 'Juma M.', location: 'Mbeya', crops: ['Mahindi', 'Maharage'] },
-    { id: 2, name: 'Asha K.', location: 'Iringa', crops: ['Nyanya', 'Viazi'] },
-    { id: 3, name: 'Salum O.', location: 'Dodoma', crops: ['Mpunga', 'Vitunguu'] },
-    { id: 4, name: 'Anna P.', location: 'Arusha', crops: ['Mahindi'] },
-    { id: 5, name: 'John D.', location: 'Morogoro', crops: ['Tumbaku'] },
-    { id: 6, name: 'Zena K.', location: 'Mtwara', crops: ['Korosho', 'Ufuta'] },
-    { id: 7, name: 'Tito G.', location: 'Singida', crops: ['Alizeti'] },
-    { id: 8, name: 'Hawa S.', location: 'Kigoma', crops: ['Mihogo'] },
-    { id: 9, name: 'Bakari Y.', location: 'Lindi', crops: ['Mpunga', 'Mahindi'] },
-    { id: 10, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 11, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 12, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 13, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 14, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 15, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 16, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 10, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 10, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-    { id: 10, name: 'Musa T.', location: 'Tabora', crops: ['Miwa'] },
-  ];
-  
-  const FarmerList = () => {
-    const [search, setSearch] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
-  
-    const filteredFarmers = dummyFarmers.filter(f =>
-      f.name.toLowerCase().includes(search.toLowerCase()) ||
-      f.location.toLowerCase().includes(search.toLowerCase())
-    );
-  
-    const indexOfLast = currentPage * itemsPerPage;
-    const indexOfFirst = indexOfLast - itemsPerPage;
-    const currentFarmers = filteredFarmers.slice(indexOfFirst, indexOfLast);
-    const totalPages = Math.ceil(filteredFarmers.length / itemsPerPage);
-  
-    return (
-      <div className={styles.container}>
-        <h2 className={styles.title}>Wakulima Wangu</h2>
-  
+
+const FarmerList = () => {
+  const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [data, setData] = useState()
+  const[showmodal, setShowModal] = useState(false)
+
+  const filteredFarmers = data?.filter(f =>
+    f?.first_name.toLowerCase().includes(search.toLowerCase()) ||
+    f?.location.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentFarmers = filteredFarmers?.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredFarmers?.length / itemsPerPage);
+
+  const get_data = async () => {
+    try {
+      const resp = await axiosAuthApi.get('/details/details/')
+      setData(resp)
+      console.log(resp)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onClose = ()=> {
+    setShowModal(false)
+  }
+
+  useEffect(() => {
+    get_data()
+  }, [])
+
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.title}>Wakulima Wangu</h2>
+
+      <div className={styles.adddiv}>
         <input
           type="text"
           placeholder="Tafuta kwa jina au eneo..."
@@ -54,62 +56,73 @@ const dummyFarmers = [
           }}
           className={styles.searchInput}
         />
-  
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Jina</th>
-              <th>Eneo</th>
-              <th>Mazao</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentFarmers.length > 0 ? (
-              currentFarmers.map((farmer) => (
-                <tr key={farmer.id}>
-                  <td>{farmer.name}</td>
-                  <td>{farmer.location}</td>
-                  <td>{farmer.crops.join(', ')}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3" className={styles.empty}>Hakuna mkulima aliyepatikana</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-  
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className={styles.pagination}>
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((prev) => prev - 1)}
-            >
-              Prev
-            </button>
-  
-            {[...Array(totalPages)].map((_, index) => (
-              <button
-                key={index}
-                className={currentPage === index + 1 ? styles.activePage : ''}
-                onClick={() => setCurrentPage(index + 1)}
-              >
-                {index + 1}
-              </button>
-            ))}
-  
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-            >
-              Next
-            </button>
-          </div>
-        )}
+
+        <input type="button" className={styles.addButton} value='+ Ongeza Mkulima' onClick={()=>setShowModal(true)}/>
+
       </div>
-    );
-  };
+
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>Jina</th>
+            <th>Email</th>
+            <th>Eneo</th>
+            <th>Mazao</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentFarmers?.length > 0 ? (
+            currentFarmers.map((farmer) => (
+              <tr key={farmer?.id}>
+                <td>{farmer?.first_name.charAt(0).toUpperCase() + farmer?.first_name.slice(1).toLowerCase()} .{farmer.last_name.charAt(0).toUpperCase()}</td>
+                <td>{farmer?.email}</td>
+                <td>{farmer?.farmer_profile?.location || 'none'}</td>
+                <td>{farmer?.farmer_profile?.crop_type || 'none'}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3" className={styles.empty}>Hakuna mkulima aliyepatikana</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            Prev
+          </button>
+
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              className={currentPage === index + 1 ? styles.activePage : ''}
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
+
+      <Addfarmer 
+      isOpen ={showmodal}
+      onClose ={onClose}
+      />
+    </div>
+  );
+};
 
 export default FarmerList;

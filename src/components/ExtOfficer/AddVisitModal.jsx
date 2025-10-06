@@ -4,12 +4,12 @@ import styles from '../style/ExtOfficer/AddVisitModal.module.css';
 
 const AddVisitModal = ({ isOpen, onClose, onAdd }) => {
   const [formData, setFormData] = useState({
-    farmerName: '',
-    location: '',
+    farmer: '',
+    city: '',
     date: '',
-    purpose: '',
-    notes: '',
-    attachment: '',
+    dhumuni: '',
+    desc: '',
+    // attachment: '',
   });
 
   const handleChange = (e) => {
@@ -31,12 +31,12 @@ const AddVisitModal = ({ isOpen, onClose, onAdd }) => {
     onAdd(formData);
     onClose();
     setFormData({
-      farmerName: '',
-      location: '',
+      farmer: '',
+      city: '',
       date: '',
-      purpose: '',
-      notes: '',
-      attachment: '',
+      dhumuni: '',
+      desc: '',
+      // attachment: '',
     });
   };
 
@@ -49,17 +49,17 @@ const AddVisitModal = ({ isOpen, onClose, onAdd }) => {
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="text"
-            name="farmerName"
+            name="farmer"
             placeholder="Jina la Mkulima"
-            value={formData.farmerName}
+            value={formData.farmer}
             onChange={handleChange}
             required
           />
           <input
             type="text"
-            name="location"
+            name="city"
             placeholder="Eneo"
-            value={formData.location}
+            value={formData.city}
             onChange={handleChange}
             required
           />
@@ -72,21 +72,21 @@ const AddVisitModal = ({ isOpen, onClose, onAdd }) => {
           />
           <input
             type="text"
-            name="purpose"
+            name="dhumuni"
             placeholder="Madhumuni ya Ziara"
-            value={formData.purpose}
+            value={formData.dhumuni}
             onChange={handleChange}
             required
           />
           <textarea
-            name="notes"
+            name="desc"
             placeholder="Maelezo ya ziara..."
             rows={4}
-            value={formData.notes}
+            value={formData.desc}
             onChange={handleChange}
             required
           />
-          <label className={styles.fileLabel}>
+          {/* <label className={styles.fileLabel}>
             Picha/Attachment:
             <input
               type="file"
@@ -94,7 +94,7 @@ const AddVisitModal = ({ isOpen, onClose, onAdd }) => {
               accept="image/*"
               onChange={handleChange}
             />
-          </label>
+          </label> */}
 
           <div className={styles.actions}>
             <button type="submit">Hifadhi</button>

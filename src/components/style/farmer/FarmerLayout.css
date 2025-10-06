@@ -1,35 +1,30 @@
-
-
 /* farmerLayout.css */
 .farmer-layout {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    max-width: 1920px;
-    width: 100%;
-    justify-content: center;
-    /* background: #ff0000; */
-    overflow-y: hidden;
-  }
-  
-  .farmer-body {
-    display: flex;
-    /* flex: 1; */
-    height: calc(100vh - 65px);
-    overflow-y: hidden;
-  }
-  
-  .farmer-content {
-    /* flex: 1; */
-    padding: 0.5rem;
-    /* position: fixed; */
-    height: calc(100vh - 64px);
-    width: 100%;
-    overflow-y: scroll;
-    /* background: linear-gradient(90deg, rgb(60, 136, 25),rgb(79, 183, 65)); */
-    background: #ebf1e8;
-    color: black;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 1920px;
+  width: 100%;
+  justify-content: center;
+  /* background: #ff0000; */
+  overflow-y: hidden;
+}
 
+.farmer-body {
+  display: flex;
+  /* flex: 1; */
+  height: calc(100vh - 67px);
+  overflow-y: hidden;
+}
 
-  
+.farmer-content {
+  /* flex: 1; */
+  padding: 0.5rem;
+  /* position: fixed; */
+  height: calc(100vh - 100px);
+  width: 100%;
+  overflow-y: scroll;
+  /* background: linear-gradient(90deg, rgb(60, 136, 25),rgb(79, 183, 65)); */
+  background: #ebf1e8;
+  color: black;
+}

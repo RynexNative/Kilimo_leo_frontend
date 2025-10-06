@@ -1,0 +1,42 @@
+.Container {
+ background: #00000038;
+ position: absolute;
+ z-index: 9999;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+
+.formCont{
+ display: flex;
+ background: #ffffff48;
+ width: 300px;
+ justify-content: center;
+ align-items: center;
+ backdrop-filter: blur(5px);
+ border-radius: 10px;
+ border: 1px solid rgba(0, 0, 0, 0.223);
+}
+
+.formCont form{
+ display: flex;
+ flex-direction: column;
+ margin: 20px;
+ gap: 2px;
+ /* text-align: left; */
+
+}
+
+.formCont form label{
+ text-align: left;
+}
+
+
+.formCont form input{
+ width: 85%;
+}

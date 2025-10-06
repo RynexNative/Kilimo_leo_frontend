@@ -1,43 +1,65 @@
 // src/pages/extension/FieldVisits.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../style/ExtOfficer/FieldVisits.module.css';
 import AddVisitModal from '../../components/ExtOfficer/AddVisitModal';
 import VisitAccordion from '../../components/ExtOfficer/VisitAccordion';
+import axiosAuthApi from '../../utils/http';
 
-const dummyVisits = [
-  {
-    id: 1,
-    farmerName: 'Asha K.',
-    location: 'Mbeya',
-    date: '2025-06-20',
-    purpose: 'Ukaguzi wa magonjwa',
-    notes: 'Mimea ilionyesha dalili za fangasi. Ilishauriwa kutumia dawa maalum.',
-    attachment: '',
-  },
-  {
-    id: 2,
-    farmerName: 'Juma M.',
-    location: 'Moshi',
-    date: '2025-06-18',
-    purpose: 'Mafunzo ya matumizi ya mbolea',
-    notes: 'Alielekezwa matumizi ya mbolea ya kupandia na kukuzia.',
-    attachment: '',
-  },
-];
+// const dummyVisits = [
+//   {
+//     id: 1,
+//     farmerName: 'Asha K.',
+//     location: 'Mbeya',
+//     date: '2025-06-20',
+//     purpose: 'Ukaguzi wa magonjwa',
+//     notes: 'Mimea ilionyesha dalili za fangasi. Ilishauriwa kutumia dawa maalum.',
+//     attachment: '',
+//   },
+//   {
+//     id: 2,
+//     farmerName: 'Juma M.',
+//     location: 'Moshi',
+//     date: '2025-06-18',
+//     purpose: 'Mafunzo ya matumizi ya mbolea',
+//     notes: 'Alielekezwa matumizi ya mbolea ya kupandia na kukuzia.',
+//     attachment: '',
+//   },
+// ];
 
 const FieldVisits = () => {
-  const [visits, setVisits] = useState(dummyVisits);
+  const [visits, setVisits] = useState();
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState('');
 
-  const filteredVisits = visits.filter(
+
+  const get_data = async() => {
+    try{
+      const resp = await axiosAuthApi.get('/fields/fields/')
+      setVisits(resp)
+    }catch(err){
+      console.log(err)
+      alert('server Error please Contuct admin')
+    }
+  }
+
+  useEffect(()=>{
+    get_data()
+  },[])
+
+  const filteredVisits = visits?.filter(
     (visit) =>
-      visit.farmerName.toLowerCase().includes(search.toLowerCase()) ||
-      visit.location.toLowerCase().includes(search.toLowerCase())
+      visit?.farmer.toLowerCase().includes(search.toLowerCase()) ||
+      visit?.city.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleAddVisit = (visit) => {
-    setVisits((prev) => [{ ...visit, id: Date.now() }, ...prev]);
+  const handleAddVisit = async(newvisit) => {
+    try{
+      const resp = await axiosAuthApi.post('/fields/fields/', {...newvisit})
+      get_data()
+    }catch(err){
+      console.log(err)
+      alert('Error Adding Field Visit')
+    }
   };
 
   return (
@@ -56,10 +78,10 @@ const FieldVisits = () => {
       </div>
 
       <div className={styles.accordionList}>
-        {filteredVisits.length === 0 ? (
+        {filteredVisits?.length === 0 ? (
           <p className={styles.noData}>Hakuna ziara zinazolingana na utafutaji</p>
         ) : (
-          filteredVisits.map((visit) => (
+          filteredVisits?.map((visit) => (
             <VisitAccordion key={visit.id} data={visit} />
           ))
         )}

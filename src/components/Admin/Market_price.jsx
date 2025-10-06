@@ -1,17 +1,54 @@
-// src/pages/farmer/Market.jsx
-import React, { useState, useEffect } from "react";
-import styles from "../../style/farmer/Market.module.css";
+import React, { useState, useEffect } from 'react'
+import styles from "../style/Admin/Market_price.module.css";
 import AddProductModal from "../../components/former/AddProductModal";
-import BuyerList from "../../components/former/BuyerList";
 import PriceTrendChart from "../../components/former/PriceTrandChart";
 import axiosAuthApi from "../../utils/http";
+import AddPrice from './AddPrice';
 
-const Market = () => {
+
+
+
+
+// const data1 = [
+//     {
+//         "id": 1,
+//         "name": "kariako",
+//         "location": "Dar Es Salaam",
+//         "P": "Tanzania"
+//     },
+//     {
+//         "id": 2,
+//         "name": "Kilombero",
+//         "location": "Arusha",
+//         "description": "Tanzania"
+//     },
+//     {
+//         "id": 3,
+//         "name": "Msufini",
+//         "location": "Singida",
+//         "description": "Tanzania"
+//     },
+//     {
+//         "id": 4,
+//         "name": "mgunda",
+//         "location": "Dar Es Salaam",
+//         "description": "Tanzania"
+//     },
+//     {
+//         "id": 5,
+//         "name": "Kinondoni",
+//         "location": "Dar Es Salaam",
+//         "description": "Tanzania"
+//     }
+// ]
+
+function Market_price() {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState(); // sasa hii itakuja kutoka API
   const [region, setRegion] = useState("");
   const [market, setMarket] = useState("");
   const [markets, setMarkets] = useState([]); // list ya markets kutoka API
+  // const [showModal]
 
   // 1. Fetch markets list
   useEffect(() => {
@@ -119,7 +156,7 @@ const Market = () => {
     };
 
     fetchMarketDetails();
-  }, [market]);
+  }, [market, showModal]);
 
 
 
@@ -128,7 +165,7 @@ const Market = () => {
     setProducts((prev) => [...prev, { ...product, id: Date.now() }]);
   };
 
-console.log(products)
+// console.log(products)
   // Fungua priceHistory kuwa flat data kwa chart
   const chartData = products?.flatMap((item) =>
     // console.log(item)
@@ -152,7 +189,7 @@ console.log(products)
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2>Soko la Mazao</h2>
+        <h2>Bei za Mazao</h2>
       </div>
 
       {/* ---- Filter Section ---- */}
@@ -189,6 +226,7 @@ console.log(products)
               ))}
           </select>
         </label>
+        <button className={styles.addButton} onClick={()=>setShowModal(true)}>Weka Bei</button>
       </div>
 
       {/* ---- Products Table ---- */}
@@ -228,18 +266,21 @@ console.log(products)
       </table>
 
       {/* ---- Other Components ---- */}
-      <AddProductModal
+      {/* <AddProductModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         onAdd={handleAddProduct}
-      />
+      /> */}
 
       {/* Pass filtered data to chart */}
       <PriceTrendChart data={chartData} />
 
-      <BuyerList />
+          <AddPrice 
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          />
     </div>
   );
-};
+}
 
-export default Market;
+export default Market_price

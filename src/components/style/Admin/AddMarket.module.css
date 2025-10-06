@@ -1,0 +1,38 @@
+.container {
+    background: #4d4d4d68;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.formCont{
+    background: #ffffff61;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    backdrop-filter: blur(10px);
+    border: rgba(70, 70, 70, 0.371) solid 1px;
+    border-radius: 10px;
+}
+
+.formCont form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* width: 23opx; */
+    /* background: red; */
+
+}
+
+.formCont form input{
+    width: 200px;
+}

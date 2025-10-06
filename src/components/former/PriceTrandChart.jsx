@@ -17,7 +17,7 @@ const PriceTrendChart = ({ data }) => {
   }
 
   // 1. Chukua unique crops (hadi 10)
-  const crops = [...new Set(data.map((item) => item.crop))].slice(0, 10);
+  const crops = [...new Set(data.map((item) => item.crop))].slice(0, 5);
 
   // 2. Chukua unique dates kutoka data, sort descending (latest kwanza)
   const uniqueDatesDesc = [...new Set(data.map((item) => item.date))]

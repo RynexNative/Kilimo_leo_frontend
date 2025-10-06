@@ -12,7 +12,7 @@ const VisitAccordion = ({ data }) => {
     <div className={`${styles.accordion} ${isOpen ? styles.open : ''}`}>
       <div className={styles.header} onClick={toggleAccordion}>
         <div>
-          <strong>{data.farmerName}</strong> - {data.location} | {data.date}
+          <strong>{data.farmer}</strong> - {data.city} | {data.date}
         </div>
         <div className={styles.icon}>
           {isOpen ? <FaChevronUp /> : <FaChevronDown />}
@@ -21,11 +21,11 @@ const VisitAccordion = ({ data }) => {
 
       {isOpen && (
         <div className={styles.content}>
-          <p><strong>Madhumuni:</strong> {data.purpose}</p>
-          <p><strong>Maelezo:</strong> {data.notes}</p>
+          <p><strong>Madhumuni:</strong> {data.dhumuni}</p>
+          <p><strong>Maelezo:</strong> {data.desc}</p>
           {data.attachment && (
             <div className={styles.attachment}>
-              <strong>Lampiran:</strong><br />
+              <strong>Kiambata:</strong><br />
               <img src={data.attachment} alt="Attachment" />
             </div>
           )}

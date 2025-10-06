@@ -1,0 +1,45 @@
+
+
+.div1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0000002a;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    
+    z-index: 1000000;
+}
+
+.div1container{
+    background: #ffffff;
+    max-width: 400px;
+    width: 400px;
+    height: 300px;
+    color: black;
+    /* max-height: 700px; */
+}
+
+.div1container h4{
+    color: black;
+    text-align: center;
+    margin: 10px;
+    text-decoration: underline;
+}
+
+
+h5{
+    padding: 0px 10px;
+}
+h5 span{
+    color: rgba(92, 92, 92, 0.829);
+}
+
+.div1container button{
+    margin: 20px;
+}

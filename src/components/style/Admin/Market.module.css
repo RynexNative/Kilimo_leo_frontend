@@ -1,8 +1,4 @@
-.container {
-    padding: 24px;
-  }
-  
-  .title {
+.title {
     font-size: 1.4rem;
     color: #1b4332;
     margin-bottom: 16px;
@@ -72,10 +68,10 @@
   }
 
   .adddiv{
-    /* background: #000; */
+
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+
   }
 
   .addButton {
@@ -92,4 +88,5 @@
   .addButton:hover{
     background-color: rgb(70, 130, 70);
   }
+
   

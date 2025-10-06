@@ -10,9 +10,9 @@ const ViewResourceModal = ({ isOpen, onClose, resource }) => {
       <div className={styles.modal}>
         <h2 className={styles.title}>{resource.title}</h2>
         <div className={styles.details}>
-          <p><strong>Aina:</strong> {resource.type}</p>
-          <p><strong>Amechapisha:</strong> {resource.uploadedBy}</p>
-          <p><strong>Tarehe:</strong> {resource.date}</p>
+          <p><strong>Aina:</strong> {resource.resource_type}</p>
+          <p><strong>Amechapisha:</strong> {resource.created_by}</p>
+          <p><strong>Tarehe:</strong> {resource.created_at}</p>
           <p><strong>Maelezo:</strong> {resource.description || 'Hakuna maelezo yaliyowekwa.'}</p>
 
           {resource.link && (

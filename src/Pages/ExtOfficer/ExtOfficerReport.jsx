@@ -1,42 +1,45 @@
 // src/pages/ext_officer/ExtOfficerReport.jsx
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../../style/ExtOfficer/ExtOfficerReport.module.css';
 import { useReactToPrint } from 'react-to-print';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import SummaryCard from '../../components/ExtOfficer/SummaryCard';
+import axios from 'axios';
+import axiosAuthApi from '../../utils/http';
 
 const ExtOfficerReport = () => {
   const componentRef = useRef();
 
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => componentRef?.current,
     documentTitle: 'RipotiYaZiara',
   });
 
-  const summaryData = [
-    { label: 'Jumla ya Ziara', value: 37, icon: '🧭' },
-    { label: 'Maeneo Tofauti', value: 12, icon: '🌍' },
-    { label: 'Wakulima Waliofikiwa', value: 58, icon: '👨‍🌾' },
-  ];
+  const [summaryData, setSummaryData] = useState()
 
-  const visitData = [
-    { name: 'Jan', visits: 8 },
-    { name: 'Feb', visits: 5 },
-    { name: 'Mar', visits: 12 },
-    { name: 'Apr', visits: 7 },
-    { name: 'May', visits: 10 },
-  ];
+  const [visitData, setVisits] = useState()
 
-  const areaData = [
-    { name: 'Morogoro', value: 10 },
-    { name: 'Mbeya', value: 7 },
-    { name: 'Arusha', value: 6 },
-    { name: 'Dodoma', value: 8 },
-    { name: 'Tanga', value: 6 },
-  ];
+  const [areaData, setAreaData] = useState()
 
+
+  const get_data = async()=>{
+    try{
+      const resp = await axiosAuthApi.get('/fields/report/')
+      setSummaryData(resp.summaryData)
+      setVisits(resp.visitData)
+      setAreaData(resp.areaData)
+    }catch(err){
+      console.log(err)
+      alert('')
+    }
+  }
   const COLORS = ['#2d6a4f', '#40916c', '#74c69d', '#95d5b2', '#52b788'];
 
+
+    useEffect(()=>{
+      get_data()
+
+    },[])
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -44,14 +47,14 @@ const ExtOfficerReport = () => {
         <button onClick={handlePrint} className={styles.exportBtn}>Pakua Ripoti</button>
       </div>
 
-      <div className={styles.filters}>
+      {/* <div className={styles.filters}>
         <select><option>Chuja kwa kipindi</option></select>
         <select><option>Chuja kwa eneo</option></select>
-      </div>
+      </div> */}
 
       <div className={styles.printArea} ref={componentRef}>
         <div className={styles.summary}>
-          {summaryData.map((item, i) => (
+          {summaryData?.map((item, i) => (
             <SummaryCard key={i} icon={item.icon} label={item.label} value={item.value} />
           ))}
         </div>
@@ -81,7 +84,7 @@ const ExtOfficerReport = () => {
                   outerRadius={80}
                   label
                 >
-                  {areaData.map((entry, index) => (
+                  {areaData?.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

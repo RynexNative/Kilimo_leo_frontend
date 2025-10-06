@@ -1,0 +1,48 @@
+.container{
+    background: #0000002d;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    z-index: 99999;
+
+}
+
+.formCont{
+    background: #ffffff94;
+    width: 250px;
+    backdrop-filter: blur(2px);
+    border-radius: 5px;
+    border: 1px solid rgba(106, 106, 106, 0.507);
+}
+
+.formCont h4{
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+}
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    /* background: red; */
+}
+
+.form input{
+    width: 200px;
+}
+
+.Button {
+    display: flex;
+    gap: 10px;
+}
+
+.Button .gahiri{
+    background: gray;
+}

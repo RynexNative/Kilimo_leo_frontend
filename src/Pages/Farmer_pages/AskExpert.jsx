@@ -1,11 +1,11 @@
-// src/components/farmer/AskExpert.jsx
-import React, { useEffect, useRef, useState  } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../../style/farmer/AskExpert.module.css';
 import { FaCamera, FaPlus } from 'react-icons/fa';
-
+import axiosAuthApi from '../../utils/http';
 
 const AskExpert = () => {
   const [questions, setQuestions] = useState([]);
+  const [title, setTitle] = useState('');
   const [questionText, setQuestionText] = useState('');
   const [category, setCategory] = useState('');
   const [search, setSearch] = useState('');
@@ -18,74 +18,59 @@ const AskExpert = () => {
   const formRef = useRef();
   const scrollContainer = useRef();
 
-  const handleSubmit = (e) => {
+  const defaultQuestionImage = 'https://rynexnative.com/logo.png';
+
+  // 🔹 Fetch questions
+  const fetchQuestions = async () => {
+    try {
+      const resp = await axiosAuthApi.get('/questions/qn/');
+      setQuestions(resp);
+    } catch (err) {
+      console.error('Error fetching questions:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+
+  // 🔹 Submit question to backend
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!questionText.trim()) return;
 
-    const newQuestion = {
-      id: Date.now(),
-      question: questionText,
-      category,
-      date: new Date().toISOString(),
-      status: 'pending',
-      answer: null,
-      image,
-    };
+    try {
+      const formData = new FormData();
+      formData.append('title', title || 'General');
+      formData.append('content', questionText);
+      // if (category) formData.append('category', category);
+      if (image) formData.append('image', image);
 
-    setQuestions([newQuestion, ...questions]);
-    setQuestionText('');
-    setCategory('');
-    setImage(null);
+      const resp = await axiosAuthApi.post('/questions/qn/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      // Add the new question to state
+      setQuestions([resp.data, ...questions]);
+      setTitle('');
+      setQuestionText('');
+      setCategory('');
+      setImage(null);
+    } catch (err) {
+      console.error('Error submitting question:', err);
+    }
   };
-
-  const filteredQuestions = questions.filter((q) =>
-    q.question.toLowerCase().includes(search.toLowerCase())
-  );
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
+    if (file) setImage(file);
   };
 
-  useEffect(() => {
-    const container = scrollContainer.current || window;
-    const handleScroll = () => {
-      const formTop = formRef.current?.getBoundingClientRect().top;
-      setShowScrollIcon(formTop && formTop < -100);
-    };
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !loading) {
-        setLoading(true);
-        setTimeout(() => {
-          const newItems = Array.from({ length: 5 }).map((_, i) => ({
-            id: Date.now() + i,
-            question: `Swali jipya #${questions.length + i + 1}`,
-            category: 'Mbegu',
-            date: new Date().toISOString(),
-            status: 'pending',
-            answer: null,
-          }));
-          setQuestions((prev) => [...prev, ...newItems]);
-          setLoading(false);
-        }, 4000);
-      }
-    });
-    if (bottomRef.current) {
-      observer.current.observe(bottomRef.current);
-    }
-    return () => {
-      if (observer.current && bottomRef.current) {
-        observer.current.unobserve(bottomRef.current);
-      }
-    };
-  }, [questions, loading]);
+  const filteredQuestions = questions?.filter((q) =>
+    q?.content.toLowerCase().includes(search.toLowerCase())
+  );
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -99,7 +84,6 @@ const AskExpert = () => {
     >
       <h2 className={styles.title}>Uliza Mtaalamu wa Kilimo</h2>
 
-      {/* Search bar */}
       <input
         type="text"
         placeholder="Tafuta swali..."
@@ -110,6 +94,14 @@ const AskExpert = () => {
 
       {/* Form ya kuuliza swali */}
       <form ref={formRef} className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Kichwa cha Swali (optional)"
+          className={styles.textarea}
+        />
+
         <textarea
           value={questionText}
           onChange={(e) => setQuestionText(e.target.value)}
@@ -141,14 +133,15 @@ const AskExpert = () => {
 
         {image && (
           <div className={styles.previewContainer}>
-            <img src={image} alt="preview" className={styles.previewImage} />
+            <img src={URL.createObjectURL(image)} alt="preview" className={styles.previewImage} />
           </div>
         )}
 
-        <button type="submit" className={styles.submitBtn}>Tuma Swali</button>
+        <button type="submit" className={styles.submitBtn}>
+          Tuma Swali
+        </button>
       </form>
 
-      {/* Icon ya kurudi kwenye form */}
       <button
         className={`${styles.scrollToFormBtn} ${!showScrollIcon ? styles.hidden : ''}`}
         onClick={scrollToForm}
@@ -156,26 +149,39 @@ const AskExpert = () => {
         <FaPlus /> Uliza Swali
       </button>
 
-      {/* List ya maswali yaliyoulizwa */}
       <div className={styles.questionList}>
         <h3>Maswali Yako</h3>
         {filteredQuestions.length === 0 && <p>Hakuna swali lililopatikana.</p>}
 
         {filteredQuestions.map((q) => (
           <div key={q.id} className={styles.questionCard}>
-            <p className={styles.qText}><strong>Swali:</strong> {q.question}</p>
-            <p className={styles.meta}>
-              {q.category} | {new Date(q.date).toLocaleDateString()} | Status:
-              <span className={styles.status + ' ' + styles[q.status]}>{q.status}</span>
+            <p className={styles.qText}>
+              <strong>Swali:</strong> {q.content}
             </p>
-            {q.image && (
-              <img src={q.image} alt="Swali" className={styles.cardImage} />
-            )}
-            {q.answer ? (
-              <div className={styles.answerBox}>
-                <strong>Jibu:</strong>
-                <p>{q.answer}</p>
-              </div>
+            <p className={styles.meta}>
+              {q.category || 'General'} | {new Date(q.created_at).toLocaleDateString()} | Status:{' '}
+              <span
+                className={`${styles.status} ${
+                  q.is_resolved ? styles.resolved : styles.pending
+                }`}
+              >
+                {q.is_resolved ? 'Jibu Limepatikana' : 'Pending'}
+              </span>
+            </p>
+
+            <img
+              src={q.image || defaultQuestionImage}
+              alt="Swali"
+              className={styles.cardImage}
+            />
+
+            {q.answers.length > 0 ? (
+              q.answers.map((ans, idx) => (
+                <div key={idx} className={styles.answerBox}>
+                  <strong>Jibu:</strong>
+                  <p>{ans.content}</p>
+                </div>
+              ))
             ) : (
               <div className={styles.answerBox}>
                 <em>Swali hili bado halijajibiwa na mtaalamu.</em>
@@ -184,7 +190,11 @@ const AskExpert = () => {
           </div>
         ))}
 
-        {loading && <div className={styles.loadingSpinner}>Inapakia maswali zaidi...</div>}
+        {loading && (
+          <div className={styles.loadingSpinner}>
+            Inapakia maswali zaidi...
+          </div>
+        )}
 
         <div ref={bottomRef} className={styles.bottomMarker}></div>
       </div>
@@ -193,5 +203,3 @@ const AskExpert = () => {
 };
 
 export default AskExpert;
-
-

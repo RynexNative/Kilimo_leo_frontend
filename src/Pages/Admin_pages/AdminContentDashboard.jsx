@@ -2,31 +2,16 @@
 import React from 'react';
 import styles from '../../style/Admin/AdminContentDashboard.module.css';
 import ContentCard from '../../components/Admin/ContentCard';
+import { FaBook, FaBookDead, FaBookReader, FaChartLine, FaWarehouse } from 'react-icons/fa';
 
 const contentTypes = [
   {
     title: 'Mafunzo',
     count: 35,
-    icon: '📚',
+    icon: <FaBookReader />,
     desc: 'Taarifa za kitaalamu kuhusu kilimo bora',
     color: '#3b82f6',
-    link: '/admin/content/learning-resources',
-  },
-  {
-    title: 'Vidokezo vya Hali ya Hewa',
-    count: 15,
-    icon: '🌤️',
-    desc: 'Ushauri wa hali ya hewa kwa wakulima',
-    color: '#38bdf8',
-    link: '/admin/content/weather-tips',
-  },
-  {
-    title: 'Vidokezo vya Kilimo',
-    count: 22,
-    icon: '🌾',
-    desc: 'Miongozo ya kilimo bora na ufanisi',
-    color: '#22c55e',
-    link: '/admin/content/farming-tips',
+    link: 'learning-resources',
   },
   {
     title: 'Maswali ya Wakulima',
@@ -34,7 +19,7 @@ const contentTypes = [
     icon: '❓',
     desc: 'Maswali yaliyoulizwa na wakulima',
     color: '#f97316',
-    link: '/admin/content/farmer-questions',
+    link: 'questions',
   },
   {
     title: 'PDF/Video Maudhui',
@@ -42,7 +27,7 @@ const contentTypes = [
     icon: '🎥',
     desc: 'Maudhui ya media kama Video na PDF',
     color: '#a8a29e',
-    link: '/admin/content/media',
+    link: 'view-learning',
   },
 ];
 

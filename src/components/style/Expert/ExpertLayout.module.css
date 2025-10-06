@@ -6,6 +6,7 @@
   height: 100%;
   overflow: hidden;
   background-color: #f7fdf9;
+  color: black;
 }
 
 /* Sidebar inachukuliwa na component moja kwa moja - haina class hapa */
@@ -24,3 +25,5 @@
   padding: 24px;
   background-color: #f1fdf7;
 }
+
+

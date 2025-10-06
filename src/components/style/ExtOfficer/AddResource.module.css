@@ -1,0 +1,54 @@
+.Cont{
+ background: #00000059;
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.innerCont{
+ background: rgba(255, 255, 255, 0.457);
+ width: 500px;
+ max-width: 500px;
+ padding: 20px;
+ border: rgba(56, 51, 51, 0.402) 2px solid;
+ border-radius: 10px;
+ backdrop-filter: blur(3px);
+
+}
+
+form {
+ display: flex;
+ flex-direction: column;
+ justify-self: center;
+ align-items: start;
+}
+form label select, form textarea{
+ width: 90%;
+}
+
+form label select{
+ width: 470px;
+}
+form input{
+ /* background: whitesmoke; */
+ display: flex;
+ flex-direction: column;
+ width: 450px;
+}
+
+button[ty='submit']{
+ /* background: #000; */
+ width: 95%;
+ margin-top: 10px;
+}
+
+button[ty='gairi']{
+ background: gray;
+ margin-top: 10px;
+ width: 95%;
+}
