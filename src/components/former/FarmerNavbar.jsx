@@ -15,11 +15,6 @@ function FarmerNavbar() {
         <span>Profile</span>
 
         </div>
-        <div className={styles.icon}>
-        <FaSignOutAlt  title="Logout" />
-        <span>Logout</span>
-
-        </div>
       </div>
     </nav>
   )

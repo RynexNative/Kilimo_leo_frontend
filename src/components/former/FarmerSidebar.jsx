@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from '../style/farmer/FarmerSidebar.module.css';
 import { NavLink, useOutletContext } from 'react-router-dom';
-import { FaTachometerAlt, FaSeedling, FaCloudSun, FaStore, FaBookOpen, FaQuestionCircle } from 'react-icons/fa';
+import { FaTachometerAlt, FaSeedling, FaCloudSun, FaStore, FaBookOpen, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
+import { Logout } from '../Expert/ExpertSidebar';
 
 function FarmerSidebar() {
   const role = useOutletContext()
@@ -43,6 +44,13 @@ function FarmerSidebar() {
       }>
         <FaQuestionCircle className={styles.icon} />
         <span>Uliza Mtaalamu</span>
+      </NavLink>
+
+      <NavLink to="/" className={({ isActive }) =>
+        `${styles.link} ${isActive ? styles.active : ''}`
+      } onClick={Logout}>
+        <FaSignOutAlt className={styles.icon} />
+        <span>Logout</span>
       </NavLink>
     </aside>
   )
